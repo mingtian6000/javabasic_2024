@@ -1,0 +1,26 @@
+1.here we will demonstrate 3 types of java object to diff format:
+json/xml/yaml
+
+json: google.Gson
+   1.object-> json
+   2.json-> object
+   3.jsonArray -> object arr : working with generic types, you can use TypeToken
+   4.object arr -> jsonArray :
+   5.Gson other functions: customized adapter(e.g. redefine the key in your json obj)
+   6.how to handle array which is missing some field: lenient + null serialize
+   7.JsonElement, JsonObject, and JsonArray
+xml:
+    1.jaxb
+    2.dom
+    3.sax
+    4.jackson(can customize output)
+        @JacksonXmlProperty(index = x) -> Element Order
+        @JacksonXmlRootElement
+        @JsonIgnore -> ignoring field
+    5.Xpath
+
+yaml:
+
+2.also we will show how java can integrate with CSV/PDF
+
+3.java with serialization
