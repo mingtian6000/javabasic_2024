@@ -1,0 +1,15 @@
+<people>
+    <person>
+        <name>Alice</name>
+        <age>30</age>
+    </person>
+    <person>
+        <name>Bob</name>
+        <age>25</age>
+        <address>
+            <street>abc</street>
+            <city>Henan</city>
+            <postcode>473000</postcode>
+        </address>
+    </person>
+</people>
