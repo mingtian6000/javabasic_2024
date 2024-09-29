@@ -16,7 +16,7 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-  <dependencies>
+<dependencies>
     <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
@@ -115,5 +115,15 @@
         <version>1.7.32</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.mvel</groupId>
+        <artifactId>mvel2</artifactId>
+        <version>2.5.2.Final</version>
+      </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>2.4.0</version>
+    </dependency>
   </dependencies>
 </project>
