@@ -1,4 +1,4 @@
-package demo;
+package demo.fileops;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

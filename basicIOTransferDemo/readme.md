@@ -1,8 +1,19 @@
-# we will demo basic java IO operations in this module
-    e.g. bytestreams/charstreams
-# will demo some network transportation(basic tcp/udp/http)
-# advanced file operation
+# demo basic java IO operations in this module
+    - e.g. bytestreams/charstreams
+#####  when need encoding and when do not need??
+    - Streams (InputStream/OutputStream): byte oriented(dealing with bytes), no need encoding
+    - Readers/Writers: Character-Oriented,They handle Unicode characters and are thus concerned with how those characters are represented in bytes.need encoding
+     due to this design, they cannot innerly convert to each and cannot inherited..
+    - stream benchmark we use bufferedStream and non-bufferedStream compare performance
+    - 3 ways to read file line by line (BIO, NIO, SCANNER)
 
+# demo some network transportation(basic tcp/udp/http)
+     HttpGetExample
+# advanced file operation
+    - make sure resource is closed correctly: try-with-resource语句要求被管理的资源实现了AutoCloseable接口或其子接口Closeable。
+    - some examples using the java.nio.file package
+    - file copying, moving, deleting, file metadata manipulation, and handling directories...
+    - very large file, how to improve perfomance?
 
 # network transfer framework:
    #### 网络调用类型
@@ -19,6 +30,11 @@
 ####     1) connection pooling; and how to monitor http connection pool
        - ConnTotal:连接池中最大连接数;
        - ConnPerRoute(1000):分配给同一个route(路由)最大的并发连接数,route为运行环境机器到目标机器的一条线路
+       - The "connection pool shutdown" error typically occurs when you attempt to use a CloseableHttpClient that has already been closed
+        since connection pool is as important as DB connection pool ,some team have the needs to monitor
+        you can use
+        1.Custom Monitoring Metrics
+        2.Using a Monitoring Framework io.micrometer
 ####      2) timeout;
           Types of Timeouts:
         - Connection Timeout: The time to establish a connection with the server.
@@ -62,3 +78,5 @@
     - IoSession: Represents a connection between the client and server, allowing you to read or write data.
 
 # NIO and its related framework
+    - netty : NIO 没有人不知道的
+    - akka: JVM平台上构建高并发、分布式和容错应用的工具包, Akka用Scala语言写成，同时提供了Scala和JAVA的开发接口

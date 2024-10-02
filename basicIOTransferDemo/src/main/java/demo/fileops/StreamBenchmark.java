@@ -1,4 +1,4 @@
-package demo;
+package demo.fileops;
 
 import java.io.*;
 
@@ -10,6 +10,7 @@ public class StreamBenchmark {
         String targetFile = "target.txt";
 
         // 使用缓冲流进行文件复制
+        // 可以显著提高数据读写效率。缓冲流内部维护了一个缓冲区，减少了与底层IO设备的交互次数，从而提高了性能。或者简单点你可以把他想象为一个数据库的批处理操作。
         long startTime = System.nanoTime();
         copyFileUsingBufferedStream(sourceFile, targetFile);
         long bufferedTime = System.nanoTime() - startTime;
