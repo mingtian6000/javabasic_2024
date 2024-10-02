@@ -1,4 +1,4 @@
-package demo;
+package demo.threadbasics;
 
 class MyThread1 extends Thread {
     @Override

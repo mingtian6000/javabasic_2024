@@ -1,4 +1,4 @@
-package demo;
+package demo.threadbasics;
 
 
 class MyThread2 extends Thread {

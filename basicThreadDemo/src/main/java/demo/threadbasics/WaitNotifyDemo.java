@@ -1,4 +1,4 @@
-package demo;
+package demo.threadbasics;
 
 public class WaitNotifyDemo {
     // please note wait/notify all object  method, there must be object for locking!!

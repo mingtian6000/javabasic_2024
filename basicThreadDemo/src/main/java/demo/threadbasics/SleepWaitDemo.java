@@ -1,4 +1,4 @@
-package demo;
+package demo.threadbasics;
 
 public class SleepWaitDemo {
     public static void main(String[] args) {

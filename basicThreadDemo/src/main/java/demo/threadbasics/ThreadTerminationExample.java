@@ -1,4 +1,4 @@
-package demo;
+package demo.threadbasics;
 
 class MyThread3 extends Thread {
     private volatile boolean isTerminated = false;
