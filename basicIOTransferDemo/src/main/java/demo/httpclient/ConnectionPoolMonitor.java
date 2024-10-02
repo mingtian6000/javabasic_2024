@@ -1,4 +1,4 @@
-package demo.http;
+package demo.httpclient;
 
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 

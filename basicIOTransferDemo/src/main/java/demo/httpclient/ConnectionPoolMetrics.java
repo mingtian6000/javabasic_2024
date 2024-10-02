@@ -1,4 +1,4 @@
-package demo.http;
+package demo.httpclient;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 
