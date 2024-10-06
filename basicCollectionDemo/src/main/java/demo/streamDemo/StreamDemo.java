@@ -1,13 +1,16 @@
 package demo.streamDemo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamDemo {
     public static void main(String[] args) {
         streamFilterPredicated1();
-        streamFilterChaining();
+        //streamSubGroup();
+        uniqueSmallestNumber();
     }
     private static void streamFilterPredicated1(){
         List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
@@ -27,5 +30,41 @@ public class StreamDemo {
     }
     private static void streamFilterObjects(){
 
+    }
+    private static void streamSubGroup(){
+        List<Integer> numbers = Arrays.asList(1, 1, 0, -3, -5);
+
+        List<List<Integer>> sublists = new ArrayList<>();
+
+        Stream.of(numbers)
+                .flatMap(List::stream) // Flatten the list
+                .collect(Collectors.groupingBy(
+                        // Group by a custom key based on the conditions
+                        n -> {
+                            if (n > 0) return 1; // Positive group
+                            if (n == 0) return 0; // Zero group
+                            return -1; // Negative group
+                        },
+                        Collectors.toList()
+                ))
+                .forEach((key, value) -> {
+                    if (!value.isEmpty()) {
+                        sublists.add(value);
+                    }
+                });
+
+        sublists.forEach(System.out::println);
+    }
+
+    private static void uniqueSmallestNumber(){
+        List<Integer> numbers = Arrays.asList(5, 3, 8, 1, 4, 2, 1, 3, 5);
+        int n = 2; // Number of smallest unique elements to find
+        List<Integer> smallestUniqueNumbers = numbers.stream()
+                .distinct()
+                .sorted()
+                .limit(n)
+                .collect(Collectors.toList());
+
+        System.out.println("Smallest " + n + " unique numbers: " + smallestUniqueNumbers);
     }
 }
