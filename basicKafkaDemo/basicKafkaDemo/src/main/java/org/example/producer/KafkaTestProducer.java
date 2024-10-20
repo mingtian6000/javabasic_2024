@@ -5,16 +5,17 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducer {
+public class KafkaTestProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public KafkaTestProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void send(String topic, String message) {
+    public void sendMessage(String topic, String message) {
+        System.out.println("receinve messge is :"+message);
         kafkaTemplate.send(topic, message);
     }
 }

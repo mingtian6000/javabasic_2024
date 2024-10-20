@@ -1,4 +1,4 @@
-package org.example.SPEL;
+package org.example.spel;
 import org.example.entity.Person;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;

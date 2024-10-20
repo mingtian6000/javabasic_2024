@@ -1,4 +1,4 @@
-package org.example.SPEL;
+package org.example.spel;
 
 import com.jayway.jsonpath.JsonPath;
 import org.json.JSONObject;

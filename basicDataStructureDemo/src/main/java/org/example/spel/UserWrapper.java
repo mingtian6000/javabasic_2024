@@ -1,4 +1,4 @@
-package org.example.SPEL;
+package org.example.spel;
 
 import org.json.JSONObject;
 
