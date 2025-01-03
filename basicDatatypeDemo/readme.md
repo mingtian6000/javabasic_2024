@@ -1,4 +1,60 @@
-### day1
+## new features
+1.Java 8 引入了函数式接口，这是只包含一个抽象方法的接口，
+使用 @FunctionalInterface 注解来标识。可以使用 Lambda 表达式或方法引用来创建函数式接口的实例。
+注意传入参数就是一个函数式接口的场合（比如我们那个MQ）
+
+使用 @FunctionalInterface 注解确保接口只有一个抽象方法。
+可以使用泛型来提高接口的通用性。
+将自定义函数式接口作为方法参数，实现更灵活的编程。
+
+2.很多 Java 标准库的方法中，可以使用 Lambda 表达式作为参数，实现函数式编程风格
+
+从jdk8开始，Java就在不停升级
+目前升到jdk21/23
+jdk21 的新特性也不能不知道: 记住三个： 虚拟线程，sequencecollection，未命名模式，增强的siwtch
+
+
+## 设计模式
+1. 单例模式 Singleton:注意里private static的instance
+2. 简单工场模式 FactoryPatternExample，使用抽象类或者接口，具体实现交给子类，调用时候在决定是哪个子类
+3. 适配器模式 AdaptorExample
+4. 装饰器模式 DecoratorExample coffee and coffeeDecorator
+5. 观察者模式 ObserverPatternExample --> 消息队列实现通知，pub/sub模式
+6. 策略模式？？ 
+7. 代理模式：动态代理， 静态代理
+8. 
+
+## 反射
+反射基本是一切的基石，所有框架，APM，rule engine基本都基于反射实现。
+所以反射一定要吃透。
+1. Reflection 获取类的基本信息，包括类名、修饰符、父类和实现的接口。basic Demo
+2. ReflectionInvokeExample
+
+## 注解：
+在Java中注解其实就是写在接口、类、属性、方法上的一个标签，或者说是一个特殊形式的注释，与普通的//或/**/注释不同的是：
+  普通注释只是一个注释，而注解在代码运行时是可以被反射读取并进行相应的操作，而如果没有使用反射或者其他检查，那么注解是没有任何真实作用的，
+  也不会影响到程序的正常运行结果。@Override  @SuppressWarnings
+Spring框架中常用的一些注解：@Controller、@Service、@RequestMapping，以此来实现某些功能。
+元数据是添加到程序元素如方法、字段、类和包上的额外信息，注解就是一种载体形式
+注解不能直接干扰程序代码的运行
+回顾spring的发展历程：从xml的配置文件到现在注解用的天花乱坠，分久必合 合久必分》？
+  xml的方式是集中式的元数据，不需要和代码绑定的，而注解是一种分散式的元数据设置方式
+元注解： 注解的注解，不能改的，你只能用他定义其他的注解
+### 自定义注解的创建和使用
+比如定义一个authoraized注解或者cachable的注解
+https://blog.csdn.net/KingBoyWorld/article/details/105337011
+### 注解处理器的开发
+更复杂，，针对你的注解做额外的处理 extends AbstractProcessor
+1. 创建自定义注解，指定其 @Target 和 @Retention。
+2. 创建注解处理器，继承自 AbstractProcessor，并实现 process 方法处理注解。
+3. 注册注解处理器，在 META-INF/services/javax.annotation.processing.Processor 文件中添加处理器的全限定名。
+4. 在代码中使用自定义注解。
+   https://www.baeldung.com/java-annotation-processing-builder
+有一步没看明白，为啥要注册注解处理器，不注册他不能处理吗？
+
+   
+### hackson的内容打算慢慢剥离出去，高另一个repo dedicate for hackthon and leetcode
+
 ##### 1.double的输出，注意类型的隐士转换
 格式化输出的时候注意printf("%.6f%n", d)
 
