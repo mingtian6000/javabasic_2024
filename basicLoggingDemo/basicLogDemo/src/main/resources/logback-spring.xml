@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+        <springProperty scope="context" name="kafka_bootstrapServers" source="logging.kafka.config.bootstrap-servers"/>
+        <springProperty scope="context" name="kafka_acks" source="logging.kafka.config.acks" defaultValue="all"/>
+        <springProperty scope="context" name="kafka_retries" source="logging.kafka.config.retries" defaultValue="3"/>
+        <springProperty scope="context" name="kafka_buffer_memory" source="logging.kafka.config.buffer-memory"
+                        defaultValue="67108864"/>
+        <springProperty scope="context" name="kafka_enable_idempotence" source="logging.kafka.config.enable-idempotence"
+                        defaultValue="true"/>
+        <springProperty scope="context" name="kafka_compression_type" source="logging.kafka.config.compression-type"
+                        defaultValue="snappy"/>
+        <springProperty scope="context" name="kafka_batch_size" source="logging.kafka.config.batch-size"
+                        defaultValue="131072"/>
+        <springProperty scope="context" name="kafka_max_request_size" source="logging.kafka.config.max-request-size"
+                        defaultValue="1048576"/>
+        <springProperty scope="context" name="kafka_client_id" source="MY_POD_NAME"/>
+        <springProperty scope="context" name="kafka_linger_ms" source="logging.kafka.config.linger-ms"
+                        defaultValue="50"/>
+        <springProperty scope="context" name="kafka_security_enabled" source="logging.kafka.config.security-enabled"
+                        defaultValue="false"/>
+        <springProperty scope="context" name="kafka_security_protocol" source="logging.kafka.config.security-protocol"/>
+        <springProperty scope="context" name="kafka_ssl_protocol" source="logging.kafka.config.ssl-protocol"/>
+        <springProperty scope="context" name="kafka_trust_store_location"
+                        source="logging.kafka.config.trust-store-location"/>
+        <springProperty scope="context" name="kafka_trust_store_password"
+                        source="logging.kafka.config.trust-store-password"/>
+        <springProperty scope="context" name="kafka_key_store_location"
+                        source="logging.kafka.config.key-store-location"/>
+        <springProperty scope="context" name="kafka_key_store_password"
+                        source="logging.kafka.config.key-store-password"/>
+        <springProperty scope="context" name="kafka_ssl_endpoint_identification_algorithm"
+                        source="logging.kafka.config.ssl.endpoint.identification.algorithm"/>
+        <springProperty scope="context" name="topic" source="logging.kafka.config.topic"/>
+        <springProperty scope="context" name="kafka_logging_enable" source="logging.kafka.enable" defaultValue="false"/>
+        <springProperty scope="context" name="kafka_retry_backoff_ms" source="logging.kafka.config.retry-backoff-ms"
+                        defaultValue="100"/>
+        <springProperty scope="context" name="kafka_reconnect_backoff_ms"
+                        source="logging.kafka.config.reconnect-backoff-ms" defaultValue="50"/>
+        <springProperty scope="context" name="kafka_reconnect_backoff_max_ms"
+                        source="logging.kafka.config.reconnect-backoff-max-ms" defaultValue="1000"/>
+        <springProperty scope="context" name="kafka_request_timeout_ms" source="logging.kafka.config.request-timeout-ms"
+                        defaultValue="30000"/>
+        <springProperty scope="context" name="kafka_connections_max_idle_ms"
+                        source="logging.kafka.config.connections-max-idle-ms" defaultValue="540000"/>
+        <springProperty scope="context" name="kafka_max_in_flight_requests_per_connection"
+                        source="logging.kafka.config.max-in-flight-requests-per-connection" defaultValue="5"/>
+        <springProperty scope="context" name="kafka_metadata_max_age_ms"
+                        source="logging.kafka.config.metadata-max-age-ms" defaultValue="300000"/>
+        <springProperty scope="context" name="kafka_max_block_ms" source="logging.kafka.config.max-block-ms"
+                        defaultValue="60000"/>
+        <springProperty scope="context" name="logging_console_enable" source="logging.console.enable"
+                        defaultValue="true"/>
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <target>System.out</target>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level [ApplicationLog] %logger{36} -%msg%n
+                </pattern>
+            </encoder>
+        </appender>
+        <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+            <target>System.err</target>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level [ErrorLog] %logger{36} -%msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="SCB_MSG_APPENDER" class="org.example.logback.myappender.LogAppender">
+            <layout class="org.example.logback.myappender.CustomLayout" compact="true" eventEol="true">
+                <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSZ</timestampFormat>
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                    <prettyPrint>true</prettyPrint>
+                </jsonFormatter>
+            </layout>
+
+            <messageSystem class="org.example.logback.myappender.kafka.KafkaMessageImpl">
+                <kafka_bootstrapServers>${kafka_bootstrapServers}
+                </kafka_bootstrapServers>
+                <kafka_acks>${kafka_acks}</kafka_acks>
+                <kafka_retries>${kafka_retries}</kafka_retries>
+                <kafka_buffer_memory>${kafka_buffer_memory}</kafka_buffer_memory>
+                <kafka_enable_idempotence>${kafka_enable_idempotence}
+                </kafka_enable_idempotence>
+                <kafka_compression_type>${kafka_compression_type}
+                </kafka_compression_type>
+                <kafka_batch_size>${kafka_batch_size}</kafka_batch_size>
+                <kafka_client_id>${kafka_client_id}</kafka_client_id>
+                <kafka_linger_ms>${kafka_linger_ms}</kafka_linger_ms>
+                <kafka_security_enabled>${kafka_security_enabled}
+                </kafka_security_enabled>
+                <kafka_security_protocol>${kafka_security_protocol}
+                </kafka_security_protocol>
+                <kafka_ssl_protocol>${kafka_ssl_protocol}
+                </kafka_ssl_protocol>
+                <kafka_trust_store_location>${kafka_trust_store_location}</kafka_trust_store_location>
+                <kafka_trust_store_password>${kafka_trust_store_password}</kafka_trust_store_password>
+                <kafka_key_store_location>${kafka_key_store_location}</kafka_key_store_location>
+                <kafka_key_store_password>${kafka_key_store_password}</kafka_key_store_password>
+                <kafka_ssl_endpoint_identification_algorithm>${kafka_ssl_endpoint_identification_algorithm}
+                </kafka_ssl_endpoint_identification_algorithm>
+                <topic>${topic}</topic>
+                <kafka_max_request_size>${kafka_max_request_size}
+                </kafka_max_request_size>
+                <kafka_retry_backoff_ms>${kafka_retry_backoff_ms}
+                </kafka_retry_backoff_ms>
+                <kafka_reconnect_backoff_ms>${kafka_reconnect_backoff_ms}
+                </kafka_reconnect_backoff_ms>
+                <kafka_reconnect_backoff_max_ms>${kafka_reconnect_backoff_max_ms}
+                </kafka_reconnect_backoff_max_ms>
+                <kafka_request_timeout_ms>${kafka_request_timeout_ms}
+                </kafka_request_timeout_ms>
+                <kafka_connections_max_idle_ms>${kafka_connections_max_idle_ms}
+                </kafka_connections_max_idle_ms>
+                <kafka_max_in_flight_requests_per_connection>${kafka_max_in_flight_requests_per_connection}
+                </kafka_max_in_flight_requests_per_connection>
+                <kafka_metadata_max_age_ms>${kafka_metadata_max_age_ms}
+                </kafka_metadata_max_age_ms>
+                <kafka_max_block_ms>${kafka_max_block_ms}
+                </kafka_max_block_ms>
+            </messageSystem>
+        </appender>
+
+
+        <appender name="SCB_MSG_APPENDER_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="SCB_MSG_APPENDER"/>
+        </appender>
+
+        <root level="info">
+            <if condition='property("logging_console_enable").equals("true")'>
+                <then>
+                    <appender-ref ref="STDOUT"/>
+                </then>
+            </if>
+            <if condition='property("kafka_logging_enable").equals("true")'>
+                <then>
+                    <appender-ref ref="SCB_MSG_APPENDER_ASYNC"/>
+                </then>
+            </if>
+        </root>
+    </configuration>
