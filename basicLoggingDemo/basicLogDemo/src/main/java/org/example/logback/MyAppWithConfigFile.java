@@ -23,6 +23,8 @@ public class MyAppWithConfigFile {
         logger.info("Entering application.");
         Bar bar = new Bar();
         bar.doIt();
+        logger.debug("produce more logs.");
+        logger.info("produce one log entry with billing.");
         logger.info("Exiting application.");
 
     }

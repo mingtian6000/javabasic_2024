@@ -1,4 +1,4 @@
-package org.example.logback;
+package org.example.logback.appender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;

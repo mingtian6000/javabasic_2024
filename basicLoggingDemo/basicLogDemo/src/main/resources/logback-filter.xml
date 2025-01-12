@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+if you apply below config, it will only output info level log
+其实直接用rootlevel就可以实现，感觉level filter，ThresholdFilter有点鸡肋，
+或者配合其他filter chain 实现？
+-->
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="org.example.logback.filter.GeneratedExpressionEvaluator"/>
+            <OnMismatch>NEUTRAL</OnMismatch>
+            <OnMatch>DENY</OnMatch>
+        </filter>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!--
+        events of level equal or above the threshold, ThresholdFilter will respond NEUTRAL when its decide() method is invoked.
+        events with a level below the threshold will be denied.
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+ -->
+        <encoder>
+            <pattern>
+                %-4relative [%thread] %-5level %logger{30} -%kvp -%msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

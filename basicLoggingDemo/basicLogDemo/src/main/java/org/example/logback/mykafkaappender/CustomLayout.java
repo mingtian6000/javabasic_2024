@@ -1,4 +1,4 @@
-package org.example.logback.myappender;
+package org.example.logback.mykafkaappender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.contrib.json.classic.JsonLayout;

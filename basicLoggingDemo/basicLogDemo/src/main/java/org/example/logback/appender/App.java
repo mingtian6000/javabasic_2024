@@ -1,4 +1,4 @@
-package org.example.logback;
+package org.example.logback.appender;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
