@@ -1,24 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration>
-<configuration>
-    <!-- this is examples of legacy config, you can just import using package name -->
-    <import class="org.example.logback.layout.MySampleLayout2"/>
-    <!-- <import class="org.example.logback.layout.MySampleLayout"/> -->
-    <import class="ch.qos.logback.core.encoder.LayoutWrappingEncoder"/>
-    <import class="ch.qos.logback.core.ConsoleAppender"/>
-    <filter class="org.example.logback.filter.SimpleFilter" />
 
-    <appender name="STDOUT" class="ConsoleAppender">
-        <filter class="org.example.logback.filter.SimpleFilter" />
-        <encoder class="LayoutWrappingEncoder">
-            <layout class="MySampleLayout2">
-                <prefix>alice-test</prefix>
-                <printThreadName>false</printThreadName>
-            </layout>
-        </encoder>
+<configuration>
+    <appender name="CUSTOM_KAFKA" class="org.example.logback.kafkaAppender.CustomKafkaAppender">
+        <topic>test-topic</topic>
+        <bootstrapServers>localhost:9092</bootstrapServers>
     </appender>
 
-    <root level="DEBUG">
-        <appender-ref ref="STDOUT"/>
+    <appender name="KAFKA" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="CUSTOM_KAFKA"/>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="KAFKA" />
     </root>
 </configuration>

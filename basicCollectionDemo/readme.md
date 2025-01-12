@@ -4,6 +4,24 @@
   array/list/map/hashtable...
   JDK21: sequeceed collection why?
 
+### java queue
+  FIFO --》可自己定义缓存。。 
+  #### blockingQueue --> wait
+    ArrayBlockingQueue / LinkedBlockingQueue / PriorityBlockingQueue / DelayQueue / SynchronousQueue
+  #### nonBlockingQueue  --> raise error
+    ConcurrentLinkedQueue 
+    put/take/offer/poll/peek
+  #### bounded queue
+  #### non-bounded queue --> Integer.MAX_VALUE
+  #### dequeue
+  #### priority queue --> delay queue
+    优先队列（PriorityQueue）是一种特殊的队列，它并不是先进先出的，而是优先级高的元素先出队。已经打破了FIFO。。
+    实现是二叉堆，大根堆或者小根堆
+    延迟队列： 一种以时间为度量单位的优先的队列，当入队的元素到达指定的延迟时间之后方可出队
+    优先队列的应用场景：任务调度、负载均衡、Dijkstra算法、A*算法等
+    延迟队列的应用场景：定时任务、缓存系统、消息中间件等
+
+
 ### 安全性：不可变集合
  immutable collections
 1.google的guava的库，
