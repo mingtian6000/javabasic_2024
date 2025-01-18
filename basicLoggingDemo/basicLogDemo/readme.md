@@ -68,3 +68,6 @@ in the sample code , will demonstrate:
 current popular tracing like Tlog, TTL, all use MDC, but that based on HTTP , for MQ/DB transmation, is there a way to trace?
 
 
+
+
+

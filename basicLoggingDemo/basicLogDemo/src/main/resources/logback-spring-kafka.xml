@@ -50,6 +50,7 @@
                         defaultValue="60000"/>
         <springProperty scope="context" name="logging_console_enable" source="logging.console.enable"
                         defaultValue="true"/>
+
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <target>System.out</target>
             <encoder>
@@ -64,7 +65,7 @@
             </encoder>
         </appender>
 
-        <appender name="SCB_MSG_APPENDER" class="org.example.logback.mykafkaappender.LogAppender">
+        <appender name="MSG_APPENDER" class="org.example.logback.mykafkaappender.LogAppender">
             <layout class="org.example.logback.mykafkaappender.CustomLayout" compact="true" eventEol="true">
                 <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSZ</timestampFormat>
                 <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
@@ -120,8 +121,8 @@
         </appender>
 
 
-        <appender name="SCB_MSG_APPENDER_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-            <appender-ref ref="SCB_MSG_APPENDER"/>
+        <appender name="MSG_APPENDER_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="MSG_APPENDER"/>
         </appender>
 
         <root level="info">
@@ -132,7 +133,7 @@
             </if>
             <if condition='property("kafka_logging_enable").equals("true")'>
                 <then>
-                    <appender-ref ref="SCB_MSG_APPENDER_ASYNC"/>
+                    <appender-ref ref="MSG_APPENDER_ASYNC"/>
                 </then>
             </if>
         </root>
