@@ -45,7 +45,8 @@ public class FalseSharingPreventDemo {
         for (int i = 0; i < NUM_THREADS; i++) {
             threads[i].join();
         }
-        
+        //shared data 245647 : 269292
+        //Execution time: 10ms
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
         System.out.println("shared data " + sharedData.x +" : " + sharedData.y);

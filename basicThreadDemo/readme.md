@@ -50,7 +50,37 @@ Lock是个接口，condition也是个接口，Condition 接口通常是与 Lock 
 
 
 
+# advanced
+到JVM JMM，操作系统的层面，
+## 并发和并行
+## atomic operation
+## cacheline and false sharing
+![img.png](src%2Fmain%2Fresources%2Fimg.png)
+一个缓存行可以存储多个变量（存满当前缓存行的字节数）；而CPU对缓存的修改又是以缓存行为最小单位的，
+在多线程情况下，如果需要修改“共享同一个缓存行的变量”，就会无意中影响彼此的性能，这就是伪共享（False Sharing）。
+false sharing不好因为会降低性能，那怎么办能把X，y分开存储呢？
+![img_1.png](src%2Fmain%2Fresources%2Fimg_1.png)
 
+solution：
+1.可以使用数据填充的方式来避免伪共享，即单个数据填充满一个CacheLine。这本质是一种空间换时间的做法。
+  使得数据能够完整地存储在一个或多个缓存行中，避免数据跨越多个缓存行
+2.@sun.misc.Contented  不知道为啥这个注解不好用，总之就推荐padding line
 
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly VolatileDemo --> 汇编，第一个选项干啥的？
+--Error: VM option 'PrintAssembly' is diagnostic and must be enabled via -XX:+UnlockDiagnosticVMOptions.
+--Error: The unlock option must precede 'PrintAssembly'.
 
+先用javac编译然后再用java生成汇编代码
+javac VolatileDemo.java
+java -cp . -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly demo.jmm.VolatileDemo >> temp.txt
+要装个hsids 不然还是看不到
 
+`volatile` 关键字可以禁止指令进行重排序优化，强制刷回主存 对所有线程可见。但不会保证原子性
+
+查看对象布局：JOL
+
+show bytecode 可以查看到一点东西
+javap -v VolatileDemo.class （哪个版本的jdk都有，底层一个工具）
+
+## 关于加锁
+最简单的程序：一个整数n，100个线程，每个线程对加1000次，最终结果=100*1000=100000.

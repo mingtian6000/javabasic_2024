@@ -54,13 +54,21 @@ void quicksort(int[] arr, int left, int right){
   in-order: 左边界入栈 -》null，出栈-》
    整颗tree都按左边界分解掉了。。
   如何直观打印一颗二叉树？
+  随机二叉树求最大值最小值
 ##### binarySearchTree checkBST
   排序好的二叉树，左边小于根，右边大于根
   中序遍历求解，升序
 #### complete binary Tree 完全二叉树
   铺满的，最后一层可以不满但都集中在左边
   为啥要讨论完全二叉树？ 用在二叉堆，huffman codding和 BST 的balancing上？？
-  
+  full binary tree : n=2^h-1
+
+#### balanced binary Tree 完全二叉树
+  任何一颗子树左右高度差最大为1
+  red-black tree, B-tree, priorityqueue
+
+
+
 #### BFS Breadth-First Search
 BFS 是一种分层搜索算法，它从起始节点开始，逐层向外扩展搜索。首先访问起始节点，然后访问起始节点的所有邻居节点，
 接着访问邻居节点的邻居节点，依此类推，直到找到目标节点或遍历完整个图。 宽度遍历通常使用队列实现，为啥？
@@ -72,3 +80,16 @@ DFS 是一种优先沿着深度方向搜索的算法，它从起始节点开始�
 个人觉得比较难得是递归和链表
 
 lt141
+
+
+### 树形 DP
+树结构上应用动态规划思想的算法。它利用了树的递归性质，通常通过递归的方式来解决问题--都是套路
+https://www.cnblogs.com/RioTian/p/15163878.html
+只要能用管左数要信息和右数要信息能求解出来的，都可以套用树形DP
+但不是所有题目，所有问题是左右都要信息能解决的。。。
+最低公共祖先？ lowest common ancestor
+后继节点？？
+二叉树的序列化和反序列化： 按先序遍历就可以确定一颗树来 1—1—1-#_#-1-# ,queue
+printAllFolds 有意思
+
+https://leetcode.cn/problems/binary-tree-level-order-traversal/description/
